@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brother HACCP demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('haccp.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #4D4D4D;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .logo {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .url-scheme {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="Bluebar.jpg" alt="Logo" class="logo">
+        <h1>Brother HACCP demo</h1>
+		
+		<div class="section">
+            <input type="text" id="creatorName" placeholder="Fill in your name">
+        </div>
+		
+		<div class="section">
+            <input type="text" id="productName" placeholder="Fill in your product">
+        </div>
+		
+			<h2>Choose maximum 6 allergens</h2>
+		
+			<input type="image" src="celery.png" width="48" height="48">
+			<input type="checkbox" name="allergens" value="Celery"> Celery
+			<input type="image" src="crustaceans.png" width="48" height="48">
+			<input type="checkbox" name="allergens" value="Crustaceans"> Crustaceans			
+			<input type="image" src="egg.png" width="48" height="48">
+            <input type="checkbox" name="allergens" value="Egg"> Egg			
+			<br>
+            
+			<input type="image" src="fish.png" width="48" height="48">
+			<input type="checkbox" name="allergens" value="Fish"> Fish
+			<input type="image" src="gluten.png" width="48" height="48">
+            <input type="checkbox" name="allergens" value="Gluten"> Gluten
+			<input type="image" src="lupin.png" width="48" height="48">
+            <input type="checkbox" name="allergens" value="Lupin"> Lupin
+			<br>
+
+			<input type="image" src="milk.png" width="48" height="48">
+			<input type="checkbox" name="allergens" value="Milk"> Milk
+			<input type="image" src="mollucks.png" width="48" height="48">
+            <input type="checkbox" name="allergens" value="Molluks"> Molluks
+			<input type="image" src="mustard.png" width="48" height="48">
+            <input type="checkbox" name="allergens" value="Mustard"> Mustard
+			<br>
+			
+			<input type="image" src="nuts.png" width="48" height="48">
+            <input type="checkbox" name="allergens" value="Nuts"> Nuts
+			<input type="image" src="peanuts.png" width="48" height="48">
+			<input type="checkbox" name="allergens" value="Peanuts"> Peanuts
+			<input type="image" src="sesame.png" width="48" height="48">
+			<input type="checkbox" name="allergens" value="Sesame"> Sesame
+			<br>
+
+			<input type="image" src="soy.png" width="48" height="48">
+			<input type="checkbox" name="allergens" value="Soy"> Soy
+			<input type="image" src="sulfer dioxide.png" width="48" height="48">
+			<input type="checkbox" name="allergens" value="Sulfer dioxide"> Sulfer dioxide
+			<input type="image" src="vegan.png" width="48" height="48">
+			<input type="checkbox" name="allergens" value="Vegan"> Vegan
+			<br><br>
+		
+			<!-- Here is the date-time section for .LBX textbox name "text1"-->
+			<label for="text1Object" id="text1">Date&time > production:</label><br>
+            <select id="text1" name="text1" value="datetime-local">
+			<option value="text1"></p><input type="datetime-local" id='text1Object'></p></option>          
+			</select>
+
+			<!-- Here is the date-time section for .LBX textbox name "text2"-->
+			<label for="text2Object" id="text1">Date&time > use before:</label><br>
+            <select id="text2" name="text2" value="datetime-local">
+			<option value="text2"></p><input type="datetime-local" id='text2Object'></p></option>          
+			</select>
+			
+			<!-- Here is the number of copies section, default is 1 copy,does not work now-->
+			<label for="copies" id="copies"> Copies:</label><br>
+			<input type="text" id="copies" placeholder="1">
+			<br><br>
+        
+		<button id="printButton" onclick="sendToPrint()">Print label</button>
+		<br><br>
+        	
+		<div class="button-group">
+            <button onclick="window.location.href='https://apps.apple.com/us/app/smooth-print/id1629559918'">Download Smooth Print for iOS</button>
+            <button onclick="window.location.href='https://support.brother.com/g/b/agreement.aspx?dlid=dlfp101087_000&c=eu_ot&lang=en'">Download Smooth Print for Android</button>
+		</div>
+			
+    </div>
+    <script>
+        function showSummary() {
+            //const creatorName = document.getElementById('creatorName').value;
+            //const productName = document.getElementById('productName').value;
+            //const allergens = Array.from(document.querySelectorAll('input[name="allergens"]:checked')).map(el => el.value);
+
+            //if (allergens.length > 6) {
+            //    alert("You can use maximum 6 allergens.");
+            //    return;
+            //}
+
+            //const summary = `
+            //    <h2>Your HACCP label data</h2>
+            //    <p><strong>Name:</strong> ${creatorName}</p>
+            //    <p><strong>Product name:</strong> ${productName}</p>
+             //   <p><strong>Allergens:</strong> ${allergens.join(', ')}</p>
+            //`;
+
+            //document.getElementById('summary').innerHTML = summary;
+            //document.getElementById('printButton').style.display = 'block';
+        }
+
+        function sendToPrint() {
+            const url = generateUrlScheme();
+            window.open(url, '_blank');
+            resetInputs();
+        }
+
+        function previewLink() {
+            const url = generateUrlScheme();
+            document.getElementById('urlSchemeText').textContent = url;
+            document.getElementById('urlScheme').style.display = 'block';
+        }
+
+		function generateUrlScheme() {
+            const creatorName = document.getElementById('creatorName').value;
+            const productName = document.getElementById('productName').value;
+            const allergens = Array.from(document.querySelectorAll('input[name="allergens"]:checked')).map(el => el.value).join("\r\n"); //used allergens be filled in on new line each
+			const text1 = document.getElementById("text1Object").value;
+            const text2 = document.getElementById("text2Object").value;
+			const copies = document.getElementById('copies').value;
+			return `brotherwebprint://print?filename=HACCP45x72mm.lbx&size=HACCP45x72mm.bin&text_text1=${encodeURIComponent(text1)}&text_text2=${encodeURIComponent(text2)}&text_creatorName=${encodeURIComponent(creatorName)}&text_productName=${encodeURIComponent(productName)}&text_allergens=${encodeURIComponent(allergens)}&copies=${copies}`;
+        }
+
+        function resetInputs() {
+            document.getElementById('creatorName').value = '';
+            document.getElementById('productName').value = '';
+			document.getElementById('text1').value = '';
+			document.getElementById('text2').value = '';
+            document.querySelectorAll('input[name="allergens"]').forEach(checkbox => checkbox.checked = false);
+            document.getElementById('summary').innerHTML = '';
+            //document.getElementById('printButton').style.display = 'none';
+            document.getElementById('previewButton').style.display = 'none';
+            document.getElementById('copies').value = 1;
+			document.getElementById('urlScheme').style.display = 'none';
+        }
+
+        // Limit the selection of allergens to a maximum of 6
+        document.querySelectorAll('input[name="allergens"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const checkedToppings = document.querySelectorAll('input[name="allergens"]:checked');
+                if (checkedToppings.length > 6) {
+                    this.checked = false;
+                    alert("You can use maximum 6 allergens.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
