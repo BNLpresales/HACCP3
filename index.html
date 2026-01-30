@@ -245,15 +245,7 @@
 
         document.getElementById('generatedURL').textContent = url;
 
-        fetch(url, { method: 'POST' })
-            .then(response => response.text())
-            .then(result => {
-                document.getElementById('printStatus').textContent = result;
-                document.getElementById('printStatus').style.color = '#4CAF50';
-                setTimeout(refreshPage, 3000);
-                printButton.textContent = "Imprimir"; // Reset the button text after printing
-            })
-            .catch(error => {
+             .catch(error => {
                 document.getElementById('printStatus').textContent = 'Error en la impresión: ' + error;
                 document.getElementById('printStatus').style.color = 'red';
                 deletePrintQueue();
